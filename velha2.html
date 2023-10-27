@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
-    <script src="jp/jquery.js"></script>
-    <script>
+    <script src="jquery.js"></script> 
+   
+</head>
+<script>
       $(document).ready(() => {
         var move = 1;
         var turn = true;
@@ -15,26 +17,60 @@
           console.log($("#" + e.target.id).text());
           if($("#" + e.target.id).text() == "" && turn){
             if(move % 2 == 1){
-              $("#" + e.target.id).html("X");
+              $("#" + e.target.id).html("X")
             } else {  
-              $("#" + e.target.id).html("O");
+              $("#" + e.target.id).html("O")
             }
             move++;
+            if(ForWinner() != -1 && ForWinner() != ""){
+              if(ForWinner() == "X"){
+                alert("Jogador 1 foi o vencedor!");
+              }else {
+                alert("Jogador 2 foi o vencedor!");
+              }
+              turn = false
+            }
           } else {
-              alert("Jogada inválida");
-          {
-          } 
-          }
+              alert("Jogada inválida"); }        
         })
-      })
+        function ForWinner(){
+          var field1 = $("#c00").text();
+          var field2 = $("#c01").text();
+          var field3 = $("#c02").text();
+          var field4 = $("#c10").text();
+          var field5 = $("#c11").text();
+          var field6 = $("#c12").text();
+          var field7 = $("#c20").text();
+          var field8 = $("#c21").text();
+          var field9 = $("#c22").text(); 
+          
+          if((field1 == field2)&&(field2 == field3)){
+            return field3;
+          }else if((field4 == field5)&&(field5 == field6)){
+            return field6;
+          }else if((field7 == field8)&&(field8 == field9)){
+            return field9;
+          }else if((field1 == field4)&&(field4 == field7)){
+            return field7;
+          }else if((field2 == field5)&&(field5 == field8)){
+            return field8;
+          }else if((field3 == field6)&&(field6 == field9)){
+            return field9;
+          }else if((field1 == field5)&&(field5 == field9)){
+            return field9;
+          }else if((field3 == field5)&&(field5 == field7)){
+            return field7;
+          }
+          }
+    })
     </script>
-</head>
 <body>
+  <h1>Jogo Da Velha</h1>
     <table id="dashboard">
        <tr class="row">
-          <td id="c00"></td>
-          <td id="c01"></td>
-          <td id="c02"></td>
+            <td id="c00"></td>
+            <td id="c01"></td>
+            <td id="c02"></td>
         </tr>
         <tr class="row">
             <td id="c10"></td>
@@ -42,11 +78,12 @@
             <td id="c12"></td>
           </tr>
           <tr class="row">
-            <td id="c20">6</td>
-            <td id="c21">7</td>
-            <td id="c22">8</td>
+            <td id="c20"></td>
+            <td id="c21"></td>
+            <td id="c22"></td>
           </tr>  
     </table>
+    
     
 </body>
 </html>
